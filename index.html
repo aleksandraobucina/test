@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dinamički Sajt</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <!-- Uključivanje Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!--Ikonice-->
+    <script src="https://kit.fontawesome.com/d6fae711f9.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+            <div class="container">
+                <a class="navbar-brand" href="#">Logo</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Ovde će se dinamički generisati linkovi navigacije -->
+                    </ul>
+                </div>
+            </div>
+            <button id="poruciButton" class="btn btn-primary">
+
+                Poruci
+            </button>
+
+            <div class="modal" id="modal">
+                <div class="modal-content">
+                    <span class="close" id="close">&times;</span>
+                    <h2>Poruci proizvod</h2>
+                    <form id="poruciForm">
+                        <div class="form-group">
+                            <label for="ime">Ime:</label>
+                            <input type="text" class="form-control" id="ime" name="ime" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="prezime">Prezime:</label>
+                            <input type="text" class="form-control" id="prezime" name="prezime" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail adresa:</label>
+                            <input type="email" class="form-control" id="email" name="email" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="adresa">Koji telefon porucujete:</label>
+                            <input name="adresa" class="form-control"
+                                placeholder="Napisite sifru proizvoda" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="datumDostave">Datum dostave:</label>
+                            <input type="date" class="form-control" id="datumDostave" name="datumDostave" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="adresa">Adresa dostave:</label>
+                            <input name="adresa" class="form-control"
+                                placeholder="Adresa i mesto" required="">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Poruci</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+
+    <div class="naslovna bg p-50-0 d-flex align-items-center">
+        <div class="container-fuid col-12">
+            <div class="container-fuid float-left text-light col-12 col-lg-5">
+                <h1>Izaberite telefon po vasoj meri</h1>
+                <h4 class="mt-3 mb-3">ajhahah</h4>
+                <span class="button-container text-left">
+                    <a href="#" class="btn btn-lg btn-info btn-min-width ">Pogledaj katalog</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="naslov-h2">
+        <h2>Najnovija ponuda</h2>
+    </div>
+    <div id="telefoni-container" class="d-flex justify-content-between">
+        <!-- Dinamički generisani telefoni će se prikazivati ovde -->
+    </div>
+    <div class="container text-center bg-tertiary-color">
+        <div class="row justify-content-around">
+            <div class="col-6 col-sm-3 p-1 m-1 d-flex align-items-center">
+                <div class="ikonica">
+                    <i class="fa-solid fa-truck"></i>
+                </div>
+                <p>Saljemo kurirskom sluzbom za celu Srbiju</p>
+            </div>
+            <div class="col-6 col-sm-3 p-3 m-2 d-flex align-items-center">
+                <div class="ikonica">
+                    <i class="fa-solid fa-truck"></i>
+                </div>
+                <p>Besplatna dostava na teritoriji Beograda </p>
+            </div>
+        </div>
+    </div>
+    </br>
+    <hr />
+    </br>
+    <div class="container">
+        <div class="row" id="telefoni-container"></div>
+        <div class="row" id="novi-telefoni-container"></div>
+      </div>
+      
+    
+      
+      
+
+    <!-- Link ka Bootstrap CSS-u -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Link ka Bootstrap JS-u -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Link ka Font Awesome ikonicama -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
