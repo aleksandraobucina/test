@@ -1,0 +1,174 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    scroll-behavior: smooth;
+    font-size: 1.03em;
+    line-height: 1.6;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+button{
+    border: none;
+}
+button i{
+    font-size: 25px;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar {
+    background-color: #f8f9fa; /* Boja pozadine navigacije */
+    border: none; /* Uklanja border */
+  }
+  
+  .navbar-brand {
+    font-size: 24px; /* Veličina fonta za logo */
+    font-weight: bold; /* Debljina fonta za logo */
+    color: #333; /* Boja teksta za logo */
+  }
+  
+  .navbar-nav {
+    margin-left: auto; /* Pomeranje linkova na desnu stranu */
+  }
+  
+  .navbar-nav .nav-item {
+    margin-left: 15px; /* Razmak između linkova */
+  }
+  
+  .navbar-nav .nav-link {
+    color: #333; /* Boja teksta za linkove */
+    font-weight: bold; /* Debljina fonta za linkove */
+    position: relative; /* Postavlja relativni položaj za linkove */
+  }
+  
+  .navbar-nav .nav-link::before {
+    content: ''; /* Dodaje pseudo-element */
+    position: absolute; /* Postavlja apsolutni položaj */
+    bottom: -2px; /* Razmak ispod linka */
+    left: 0; /* Leva pozicija */
+    width: 100%; /* Širina linije */
+    height: 1px; /* Debljina linije */
+    background-color: transparent; /* Boja linije (transparentna po defaultu) */
+    transition: background-color 0.3s ease; /* Animacija boje linije */
+  }
+  
+  .navbar-nav .nav-link:hover::before {
+    background-color: #333; /* Boja linije prilikom hovera */
+  }
+  .navbar-toggler-icon {
+    background-color: #333; /* Boja hamburger ikonice */
+    width: 30px; /* Širina ikonice */
+    height: 3px; /* Debljina ikonice */
+    display: block; /* Podešavanje na block element */
+    transition: background-color 0.3s ease; /* Animacija boje ikonice */
+  }
+  
+  /* Dodaj promene prilikom otvaranja hamburger menija */
+  .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+    background-color: transparent; /* Ukloni boju ikonice kad se otvori meni */
+  }
+  
+  /* Rotacija za hamburger ikonicu kad se otvori meni */
+  .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+    transform: translateY(8px) rotate(45deg); /* Rotacija gornje linije */
+  }
+  
+  .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+    transform: translateY(-8px) rotate(-45deg); /* Rotacija donje linije */
+  }
+    
+  
+/* Stilizacija telefona */
+.telefon {
+    width: 20%; /* Veličina telefona (25% sa razmakom od 20px između) */
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+  }
+.telefon img{
+    width: 50%;
+    height: 100%;
+}
+  
+.specifikacije {
+    display: none; /* Početno sakrivanje specifikacija */
+ }
+  
+  /* Stilizacija dugmeta "Prikazi vise" */
+.prikazi-vise {
+
+    cursor: pointer;
+    color: blue;
+}
+.p-50-0{
+    padding: 50px 0px;
+}  
+.naslovna {
+    background-image: url(../img/poz.jpg);
+    height: 550px;
+    padding: 150px 0px 150px 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.naslov-h2{
+    display: flex;
+    margin: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+.ikonica{
+    font-size: 30px;
+}
+.container{
+    background-color: #ccc;
+    border-radius: 15px;
+    height: auto;
+}
+/* CSS za skrivanje linkova na manjim ekranima */
+.nav-links {
+    display: none;
+  }
+  
+  /* CSS za prikazivanje hamburger ikone na manjim ekranima */
+  .hamburger-menu {
+    display: none; /* Pre nego što se klikne na hamburger */
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Tamnjenje pozadine */
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 55% !important;
+  }
+  
+  .close {
+    float: right;
+    cursor: pointer;
+  }
+  
+  .close:hover {
+    color: #000;
+  }
+  
