@@ -23,6 +23,56 @@ const links = [
   }
 
   generateLinks();
+  
+  $(document).ready(function() {
+    $("#poruciForm").validate({
+        rules: {
+            ime: {
+                required: true,
+                minlength: 2
+            },
+            prezime: {
+                required: true,
+                minlength: 2
+            },
+            telefon: {
+                required: true,
+                minlength: 5,
+                maxlength: 5
+            },
+            email: {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            ime: {
+                required: "Molimo unesite ime.",
+                minlength: "Ime mora imati najmanje 2 slova."
+            },
+            prezime: {
+                required: "Molimo unesite prezime.",
+                minlength: "Prezime mora imati najmanje 2 slova."
+            },
+            telefon: {
+                required: "Molimo unesite šifru proizvoda.",
+                minlength: "Šifra proizvoda mora imati tačno 5 karaktera.",
+                maxlength: "Šifra proizvoda mora imati tačno 5 karaktera."
+            },
+            email: {
+                required: "Molimo unesite email adresu.",
+                email: "Unesite ispravnu email adresu."
+            }
+        },
+        submitHandler: function(form) {
+            alert("Uspešno ste popunili formu!");
+            form.submit();
+        }
+    });
+});
+
+
+
 
 const telefoni = [
   { slika: 'assets/img/flip5.png', cena: '$123', sifra: 'XYZ123' },
@@ -75,12 +125,14 @@ const poruciForm = document.getElementById('poruciForm');
 poruciForm.addEventListener('submit', function(event) {
   event.preventDefault();
   const email = document.getElementById('email').value;
+  const ime = document.getElementById('ime').value;
+  const prezime = document.getElementById('prezime').value;
 
-  if (validateEmail(email)) {
+  if (validateEmail(email) && validateName(ime) && validateName(prezime)) {
     alert('Porudžba uspešna!');
     modal.style.display = 'none';
   } else {
-    alert('Unesite validan email!');
+    alert('Proverite podatke!');
   }
 });
 
@@ -88,6 +140,12 @@ function validateEmail(email) {
   const re = /\S+@\S+\.\S+/;
   return re.test(String(email).toLowerCase());
 }
+
+function validateName(name) {
+  const re = /^[a-zA-Z]{2,}$/;
+  return re.test(name);
+}
+
 
 const noviTelefoniData = [
   { ime: 'Telefon 16', slika: 'assets/img/ultra.png', cena: '$799', sifra: 'ULT01' },
@@ -129,6 +187,7 @@ function prikaziSlike(containerId, telefoni) {
 }
 
 prikaziSlike('novi-telefoni-container', noviTelefoniData);
+
 
 // Funkcija za generisanje forme za kontakt sa validacijom
 function generateContactForm() {
@@ -185,7 +244,48 @@ function generateContactForm() {
 
   contactForm.appendChild(form);
 
-  // Validacija forme pre slanja
+   // Postavljanje regularnih izraza za ime i prezime
+   nameInput.setAttribute('pattern', '[a-zA-ZčćžšđČĆŽŠĐ\\s]{2,30}');
+   nameInput.setAttribute('title', 'Unesite vaše ime (2-30 karaktera, samo slova)');
+ 
+   lastNameInput.setAttribute('pattern', '[a-zA-ZčćžšđČĆŽŠĐ\\s]{2,30}');
+   lastNameInput.setAttribute('title', 'Unesite vaše prezime (2-30 karaktera, samo slova)');
+ 
+   // Event listener za formu kako bi se izvršila validacija prilikom submitovanja forme
+   form.addEventListener('submit', function(event) {
+     // Prevent default behavior (submitovanje forme)
+     event.preventDefault();
+ 
+     // Validacija unosa
+     const nameValue = nameInput.value.trim();
+     const lastNameValue = lastNameInput.value.trim();
+     const emailValue = emailInput.value.trim();
+ 
+     const nameRegex = /[a-zA-ZčćžšđČĆŽŠĐ]{2,}/;
+     const lastNameRegex = /[a-zA-ZčćžšđČĆŽŠĐ]{2,}/;
+     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+ 
+     if (!nameRegex.test(nameValue)) {
+       alert("Ime nije ispravno uneto. Ime mora imati najmanje dva slova.");
+       return;
+     }
+ 
+     if (!lastNameRegex.test(lastNameValue)) {
+       alert("Prezime nije ispravno uneto. Prezime mora imati najmanje dva slova.");
+       return;
+     }
+ 
+     if (!emailRegex.test(emailValue)) {
+       alert("E-mail adresa nije ispravno uneta.");
+       return;
+     }
+
+     alert("Uspesno ste poslali poruku.");
+   });
+ 
+   
+ }
+ /* // Validacija forme pre slanja
   form.addEventListener('submit', function(event) {
     event.preventDefault(); 
     if (form.checkValidity()) {
@@ -200,6 +300,7 @@ function generateContactForm() {
       alert('Molimo vas da ispravno popunite sva polja forme.');
     }
   });
-}
+}*/
 
 generateContactForm();
+
