@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/responsive/responsive.css"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <!-- Font Awesome CSS -->
@@ -42,7 +43,6 @@
             <button id="poruciButton" class="btn btn-primary">
                 Poruči
             </button>
-
             <div class="modal" id="modal">
                 <div class="modal-content">
                     <span class="close" id="close">&times;</span>
@@ -61,17 +61,16 @@
                             <input type="email" class="form-control" id="email" name="email" required="">
                         </div>
                         <div class="form-group">
-                            <label for="adresa">Koji telefon porucujete:</label>
-                            <input name="adresa" class="form-control" placeholder="Napisite sifru proizvoda"
-                                required="">
+                            <label for="telefon">Koji telefon porucujete:</label>
+                            <input name="telefon" class="form-control" placeholder="Napisite sifru proizvoda" required="">
                         </div>
                         <div class="form-group">
                             <label for="datumDostave">Datum dostave:</label>
                             <input type="date" class="form-control" id="datumDostave" name="datumDostave" required="">
                         </div>
                         <div class="form-group">
-                            <label for="adresa">Adresa dostave:</label>
-                            <input name="adresa" class="form-control" placeholder="Adresa i mesto" required="">
+                            <label for="adresaDostave">Adresa dostave:</label>
+                            <input name="adresaDostave" class="form-control" placeholder="Adresa i mesto" required="">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Poruci</button>
@@ -82,13 +81,13 @@
         </nav>
     </header>
 
-    <div class="naslovna bg p-50-0 d-flex align-items-center">
+    <div class="naslovna d-flex align-items-center">
         <div class="container-fluid col-12">
-            <div class="container-fuid float-left text-light col-12 col-lg-5">
-                <h1>Dobrodošli u Svet Samsung Telefona</h1>
-                <h4>Ukoliko ste u potrazi za najnovijim informacijama, uputstvima, ili želite da
+            <div class="container-fuid text-light col-12 col-lg-5">
+                <h2>Dobrodošli u Svet Samsung Telefona</h2>
+                <p>Ukoliko ste u potrazi za najnovijim informacijama, uputstvima, ili želite da
                     istražite različite modele, slobodno istražite našu stranicu ili nas kontaktirajte - rado ćemo biti
-                    tu za vas.</h4>
+                    tu za vas.</p>
                 <span class="button-container text-left m-3">
                     <a href="#o-nama" class="btn btn-lg btn-info btn-min-width">Više o nama</a>
                 </span>
@@ -161,7 +160,7 @@
     </div>
     <div id="Kontakt">
         <div class="forma naslovna1">
-            <div id="contact-form" class="down">
+            <div id="contact-form" class="down">>
             </div>
             <div class="down">
                 <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i>Pogledajte naš
@@ -184,34 +183,16 @@
         </div>
     </div>
 
-    <div id="autor">
-        <div class="naslov-h2">
-            <h2>O AUTORU</h2>
-        </div>
-        <div class="forma">
-            <div class="down">
-                <img src="assets/img/ja.jpeg" alt="ja">
-            </div>
-            <div class="down bg-plava p-3 m-1 text-center rounded">
-                <h2>
-                    Aleksandra Obućina
-                </h2>
-                <h4>Fakultet</h4>
-                <p>ICT</p>
-                <h4>Indeks</h4>
-                <p>127/22</p>
-
-            </div>
-        </div>
-    </div>
     <footer>
         <div class="container col-6">
-            <a href="assets/dokumentacija/VISOKA ŠKOLA STRUKOVNIH STUDIJA ZA INFORMACIONE I KOMUNIKACI (1).pdf">Dokumentacija</a>
+            <a href="assets/dokumentacija/doc.pdf">Dokumentacija</a>
             <a href="sitemap.xml" class="d-inline text-info ml-3 float-right">sitemap</a>
             <p class="text-center border-top pt-3"><mark> © </mark> 2023 Aleksandra Obućina &nbsp;127<mark> / </mark>22
             </p>
         </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
