@@ -125,12 +125,14 @@ const poruciForm = document.getElementById('poruciForm');
 poruciForm.addEventListener('submit', function(event) {
   event.preventDefault();
   const email = document.getElementById('email').value;
+  const ime = document.getElementById('ime').value;
+  const prezime = document.getElementById('prezime').value;
 
-  if (validateEmail(email)) {
+  if (validateEmail(email) && validateName(ime) && validateName(prezime)) {
     alert('Porudžba uspešna!');
     modal.style.display = 'none';
   } else {
-    alert('Unesite validan email!');
+    alert('Proverite podatke!');
   }
 });
 
@@ -138,6 +140,12 @@ function validateEmail(email) {
   const re = /\S+@\S+\.\S+/;
   return re.test(String(email).toLowerCase());
 }
+
+function validateName(name) {
+  const re = /^[a-zA-Z]{2,}$/;
+  return re.test(name);
+}
+
 
 const noviTelefoniData = [
   { ime: 'Telefon 16', slika: 'assets/img/ultra.png', cena: '$799', sifra: 'ULT01' },
