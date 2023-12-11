@@ -251,9 +251,9 @@ function generateContactForm() {
    lastNameInput.setAttribute('pattern', '[a-zA-ZčćžšđČĆŽŠĐ\\s]{2,30}');
    lastNameInput.setAttribute('title', 'Unesite vaše prezime (2-30 karaktera, samo slova)');
  
-   // Event listener za formu kako bi se izvršila validacija prilikom submitovanja forme
+  
    form.addEventListener('submit', function(event) {
-     // Prevent default behavior (submitovanje forme)
+
      event.preventDefault();
  
      // Validacija unosa
@@ -283,24 +283,7 @@ function generateContactForm() {
      alert("Uspesno ste poslali poruku.");
    });
  
-   
  }
- /* // Validacija forme pre slanja
-  form.addEventListener('submit', function(event) {
-    event.preventDefault(); 
-    if (form.checkValidity()) {
-      const formData = new FormData(form);
-      const formDataObject = {};
-      formData.forEach((value, key) => {
-        formDataObject[key] = value;
-      });
-      console.log(formDataObject);
-      form.reset();
-    } else {
-      alert('Molimo vas da ispravno popunite sva polja forme.');
-    }
-  });
-}*/
 
 generateContactForm();
 
