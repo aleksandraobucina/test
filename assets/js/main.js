@@ -23,6 +23,56 @@ const links = [
   }
 
   generateLinks();
+  
+  $(document).ready(function() {
+    $("#poruciForm").validate({
+        rules: {
+            ime: {
+                required: true,
+                minlength: 2
+            },
+            prezime: {
+                required: true,
+                minlength: 2
+            },
+            telefon: {
+                required: true,
+                minlength: 5,
+                maxlength: 5
+            },
+            email: {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            ime: {
+                required: "Molimo unesite ime.",
+                minlength: "Ime mora imati najmanje 2 slova."
+            },
+            prezime: {
+                required: "Molimo unesite prezime.",
+                minlength: "Prezime mora imati najmanje 2 slova."
+            },
+            telefon: {
+                required: "Molimo unesite šifru proizvoda.",
+                minlength: "Šifra proizvoda mora imati tačno 5 karaktera.",
+                maxlength: "Šifra proizvoda mora imati tačno 5 karaktera."
+            },
+            email: {
+                required: "Molimo unesite email adresu.",
+                email: "Unesite ispravnu email adresu."
+            }
+        },
+        submitHandler: function(form) {
+            alert("Uspešno ste popunili formu!");
+            form.submit();
+        }
+    });
+});
+
+
+
 
 const telefoni = [
   { slika: 'assets/img/flip5.png', cena: '$123', sifra: 'XYZ123' },
@@ -130,6 +180,7 @@ function prikaziSlike(containerId, telefoni) {
 
 prikaziSlike('novi-telefoni-container', noviTelefoniData);
 
+
 // Funkcija za generisanje forme za kontakt sa validacijom
 function generateContactForm() {
   const contactForm = document.getElementById('contact-form');
@@ -203,3 +254,4 @@ function generateContactForm() {
 }
 
 generateContactForm();
+
