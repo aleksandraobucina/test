@@ -244,7 +244,48 @@ function generateContactForm() {
 
   contactForm.appendChild(form);
 
-  // Validacija forme pre slanja
+   // Postavljanje regularnih izraza za ime i prezime
+   nameInput.setAttribute('pattern', '[a-zA-ZčćžšđČĆŽŠĐ\\s]{2,30}');
+   nameInput.setAttribute('title', 'Unesite vaše ime (2-30 karaktera, samo slova)');
+ 
+   lastNameInput.setAttribute('pattern', '[a-zA-ZčćžšđČĆŽŠĐ\\s]{2,30}');
+   lastNameInput.setAttribute('title', 'Unesite vaše prezime (2-30 karaktera, samo slova)');
+ 
+   // Event listener za formu kako bi se izvršila validacija prilikom submitovanja forme
+   form.addEventListener('submit', function(event) {
+     // Prevent default behavior (submitovanje forme)
+     event.preventDefault();
+ 
+     // Validacija unosa
+     const nameValue = nameInput.value.trim();
+     const lastNameValue = lastNameInput.value.trim();
+     const emailValue = emailInput.value.trim();
+ 
+     const nameRegex = /[a-zA-ZčćžšđČĆŽŠĐ]{2,}/;
+     const lastNameRegex = /[a-zA-ZčćžšđČĆŽŠĐ]{2,}/;
+     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+ 
+     if (!nameRegex.test(nameValue)) {
+       alert("Ime nije ispravno uneto. Ime mora imati najmanje dva slova.");
+       return;
+     }
+ 
+     if (!lastNameRegex.test(lastNameValue)) {
+       alert("Prezime nije ispravno uneto. Prezime mora imati najmanje dva slova.");
+       return;
+     }
+ 
+     if (!emailRegex.test(emailValue)) {
+       alert("E-mail adresa nije ispravno uneta.");
+       return;
+     }
+
+     alert("Uspesno ste poslali poruku.");
+   });
+ 
+   
+ }
+ /* // Validacija forme pre slanja
   form.addEventListener('submit', function(event) {
     event.preventDefault(); 
     if (form.checkValidity()) {
@@ -259,7 +300,7 @@ function generateContactForm() {
       alert('Molimo vas da ispravno popunite sva polja forme.');
     }
   });
-}
+}*/
 
 generateContactForm();
 
