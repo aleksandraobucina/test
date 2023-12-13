@@ -24,7 +24,7 @@ const links = [
 
   generateLinks();
   
-  $(document).ready(function() {
+ $(document).ready(function() {
     $("#poruciForm").validate({
         rules: {
             ime: {
@@ -64,12 +64,21 @@ const links = [
                 email: "Unesite ispravnu email adresu."
             }
         },
+        errorPlacement: function(error, element) {
+   
+            error.insertAfter(element);
+        },
         submitHandler: function(form) {
-            alert("Uspešno ste popunili formu!");
+      
+            const successMessage = document.createElement('div');
+            successMessage.textContent = 'Uspešno ste popunili formu!';
+            successMessage.style.color = 'green';
+            form.appendChild(successMessage);
             form.submit();
         }
     });
 });
+
 
 
 
@@ -122,6 +131,8 @@ window.addEventListener('click', function(event) {
 });
 
 const poruciForm = document.getElementById('poruciForm');
+const messagePlaceholder = document.getElementById('messagePlaceholder');
+
 poruciForm.addEventListener('submit', function(event) {
   event.preventDefault();
   const email = document.getElementById('email').value;
@@ -129,12 +140,13 @@ poruciForm.addEventListener('submit', function(event) {
   const prezime = document.getElementById('prezime').value;
 
   if (validateEmail(email) && validateName(ime) && validateName(prezime)) {
-    alert('Porudžba uspešna!');
-    modal.style.display = 'none';
+    messagePlaceholder.textContent = 'Porudžba uspešna!';
+    modal.style.display = 'none'; 
   } else {
-    alert('Proverite podatke!');
+    messagePlaceholder.textContent = 'Proverite podatke!';
   }
 });
+
 
 function validateEmail(email) {
   const re = /\S+@\S+\.\S+/;
@@ -193,6 +205,7 @@ prikaziSlike('novi-telefoni-container', noviTelefoniData);
 function generateContactForm() {
   const contactForm = document.getElementById('contact-form');
 
+
   const form = document.createElement('form');
   form.setAttribute('id', 'contactForm');
 
@@ -244,63 +257,65 @@ function generateContactForm() {
 
   contactForm.appendChild(form);
 
-   // Postavljanje regularnih izraza za ime i prezime
-   nameInput.setAttribute('pattern', '[a-zA-ZčćžšđČĆŽŠĐ\\s]{2,30}');
-   nameInput.setAttribute('title', 'Unesite vaše ime (2-30 karaktera, samo slova)');
- 
-   lastNameInput.setAttribute('pattern', '[a-zA-ZčćžšđČĆŽŠĐ\\s]{2,30}');
-   lastNameInput.setAttribute('title', 'Unesite vaše prezime (2-30 karaktera, samo slova)');
- 
-   // Event listener za formu kako bi se izvršila validacija prilikom submitovanja forme
-   form.addEventListener('submit', function(event) {
-     // Prevent default behavior (submitovanje forme)
-     event.preventDefault();
- 
-     // Validacija unosa
-     const nameValue = nameInput.value.trim();
-     const lastNameValue = lastNameInput.value.trim();
-     const emailValue = emailInput.value.trim();
- 
-     const nameRegex = /[a-zA-ZčćžšđČĆŽŠĐ]{2,}/;
-     const lastNameRegex = /[a-zA-ZčćžšđČĆŽŠĐ]{2,}/;
-     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
- 
-     if (!nameRegex.test(nameValue)) {
-       alert("Ime nije ispravno uneto. Ime mora imati najmanje dva slova.");
-       return;
-     }
- 
-     if (!lastNameRegex.test(lastNameValue)) {
-       alert("Prezime nije ispravno uneto. Prezime mora imati najmanje dva slova.");
-       return;
-     }
- 
-     if (!emailRegex.test(emailValue)) {
-       alert("E-mail adresa nije ispravno uneta.");
-       return;
-     }
+    const nameRegex = /[a-zA-ZčćžšđČĆŽŠĐ]{2,}/;
+  const lastNameRegex = /[a-zA-ZčćžšđČĆŽŠĐ]{2,}/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-     alert("Uspesno ste poslali poruku.");
-   });
- 
-   
- }
- /* // Validacija forme pre slanja
-  form.addEventListener('submit', function(event) {
-    event.preventDefault(); 
-    if (form.checkValidity()) {
-      const formData = new FormData(form);
-      const formDataObject = {};
-      formData.forEach((value, key) => {
-        formDataObject[key] = value;
-      });
-      console.log(formDataObject);
-      form.reset();
-    } else {
-      alert('Molimo vas da ispravno popunite sva polja forme.');
+  // Funkcija za prikazivanje poruke ispod polja forme
+  function displayErrorMessage(element, message) {
+    const errorMessage = document.createElement('div');
+    errorMessage.classList.add('error-message');
+    errorMessage.textContent = message;
+    contactForm.insertBefore(errorMessage, element.nextSibling);
+  }
+
+  // Funkcija za uklanjanje poruke ispod polja forme
+  function removeErrorMessage(element) {
+    const errorMessages = contactForm.getElementsByClassName('error-message');
+    for (let i = 0; i < errorMessages.length; i++) {
+      if (errorMessages[i].nextSibling === element.nextSibling) {
+        contactForm.removeChild(errorMessages[i]);
+        break;
+      }
     }
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    // Validacija unosa
+    const nameValue = nameInput.value.trim();
+    const lastNameValue = lastNameInput.value.trim();
+    const emailValue = emailInput.value.trim();
+
+    if (!nameRegex.test(nameValue)) {
+      displayErrorMessage(nameInput, "Ime nije ispravno uneto. Ime mora imati najmanje dva slova.");
+      return;
+    } else {
+      removeErrorMessage(nameInput);
+    }
+
+    if (!lastNameRegex.test(lastNameValue)) {
+      displayErrorMessage(lastNameInput, "Prezime nije ispravno uneto. Prezime mora imati najmanje dva slova.");
+      return;
+    } else {
+      removeErrorMessage(lastNameInput);
+    }
+
+    if (!emailRegex.test(emailValue)) {
+      displayErrorMessage(emailInput, "E-mail adresa nije ispravno uneta.");
+      return;
+    } else {
+      removeErrorMessage(emailInput);
+    }
+
+    const successMessage = document.createElement('div');
+    successMessage.classList.add('success-message');
+    successMessage.textContent = 'Uspešno ste poslali poruku.';
+    contactForm.insertBefore(successMessage, form.nextSibling);
+
   });
-}*/
 
+  contactForm.appendChild(form);
+}
 generateContactForm();
-

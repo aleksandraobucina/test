@@ -277,3 +277,6 @@ input{
 #au .naslovna{
   height: 300px;
 }
+.success-message {
+  color: white;
+}
